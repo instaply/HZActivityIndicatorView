@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331DA284864B5E3877417A61 /* HZActivityIndicatorView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 331DA3FFC7A206A7F61232E6 /* HZActivityIndicatorView.podspec */; };
 		B9E5FC32197E4EF100335F6D /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E5FC31197E4EF100335F6D /* Storyboard.storyboard */; };
 		B9E5FC34197E504A00335F6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E5FC33197E504A00335F6D /* Default-568h@2x.png */; };
 		E71A6B7F143FA0C400675778 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71A6B7E143FA0C400675778 /* DemoViewController.m */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		331DA3FFC7A206A7F61232E6 /* HZActivityIndicatorView.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; path = HZActivityIndicatorView.podspec; sourceTree = "<group>"; };
 		B9E5FC31197E4EF100335F6D /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		B9E5FC33197E504A00335F6D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E71A6B7E143FA0C400675778 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DemoViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -65,6 +67,7 @@
 				E75815B0143F332900EDD1B7 /* ActivityIndicatorDemo */,
 				E75815A9143F332900EDD1B7 /* Frameworks */,
 				E75815A7143F332900EDD1B7 /* Products */,
+				331DA3FFC7A206A7F61232E6 /* HZActivityIndicatorView.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +179,7 @@
 				E75815B5143F332900EDD1B7 /* InfoPlist.strings in Resources */,
 				B9E5FC32197E4EF100335F6D /* Storyboard.storyboard in Resources */,
 				B9E5FC34197E504A00335F6D /* Default-568h@2x.png in Resources */,
+				331DA284864B5E3877417A61 /* HZActivityIndicatorView.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
