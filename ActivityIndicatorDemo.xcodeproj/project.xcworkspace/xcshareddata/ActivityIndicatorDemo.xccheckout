@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BABACF26-16E6-4798-AD94-E6E9581E4205</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ActivityIndicatorDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AD00C344-5C18-4114-BFBC-2D9B6F697627</key>
+		<string>https://github.com/hezi/HZActivityIndicatorView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ActivityIndicatorDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AD00C344-5C18-4114-BFBC-2D9B6F697627</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/hezi/HZActivityIndicatorView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AD00C344-5C18-4114-BFBC-2D9B6F697627</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AD00C344-5C18-4114-BFBC-2D9B6F697627</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HZActivityIndicatorView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

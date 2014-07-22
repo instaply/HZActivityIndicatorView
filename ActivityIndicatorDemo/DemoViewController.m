@@ -36,11 +36,26 @@
 #import "DemoViewController.h"
 
 #import "HZActivityIndicatorView.h"
-#import "HZActivityIndicatorSubclassExample.h"
+
+@interface DemoViewController () <UITextFieldDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *stepsField;
+@property (strong, nonatomic) IBOutlet UITextField *indicatorRadiusField;
+@property (strong, nonatomic) IBOutlet UITextField *stepDurationField;
+@property (strong, nonatomic) IBOutlet UITextField *finSizeWidthField;
+@property (strong, nonatomic) IBOutlet UITextField *finSizeHeightField;
+@property (strong, nonatomic) IBOutlet UISwitch *topLeftField;
+@property (strong, nonatomic) IBOutlet HZActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) IBOutlet UISwitch *topRightField;
+@property (strong, nonatomic) IBOutlet UISwitch *bottomLeftField;
+@property (strong, nonatomic) IBOutlet UISwitch *bottomRightField;
+@property (strong, nonatomic) IBOutlet UITextField *cornerRadiiWidthField;
+@property (strong, nonatomic) IBOutlet UITextField *cornerRadiiHeightField;
+- (IBAction)valueChanged:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *sizeField;
+- (IBAction)generateButtonTapped:(id)sender;
+@end
 
 @implementation DemoViewController
-@synthesize customIndicator;
-@synthesize nativeIndicator;
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,54 +68,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    HZActivityIndicatorView *activityIndicator = [[HZActivityIndicatorView alloc] initWithFrame:CGRectMake(50, 50, 0, 0)];
-    activityIndicator.backgroundColor = self.view.backgroundColor;
-    activityIndicator.opaque = YES;
-    activityIndicator.steps = 8;
-    activityIndicator.finSize = CGSizeMake(17, 10);
-    activityIndicator.indicatorRadius = 20;
-    activityIndicator.stepDuration = 0.150;
-    activityIndicator.color = [UIColor colorWithRed:85.0/255.0 green:0.0 blue:0.0 alpha:1.000];
-    activityIndicator.cornerRadii = CGSizeMake(0, 0);
-    [activityIndicator startAnimating];
-    [self.view addSubview:activityIndicator];
     
-    activityIndicator = [[HZActivityIndicatorSubclassExample alloc] initWithFrame:CGRectMake(150, 50, 0, 0)];
-    activityIndicator.backgroundColor = self.view.backgroundColor;
-    activityIndicator.opaque = YES;
-    activityIndicator.steps = 8;
-    activityIndicator.finSize = CGSizeMake(20, 10);
-    activityIndicator.indicatorRadius = 10;
-    activityIndicator.stepDuration = 0.0570;
-    activityIndicator.roundedCoreners = UIRectCornerAllCorners;
-    activityIndicator.cornerRadii = CGSizeMake(4, 4);
-    activityIndicator.color = [UIColor darkGrayColor];
-    activityIndicator.direction = HZActivityIndicatorDirectionCounterClockwise;
-    [activityIndicator startAnimating];
-    [self.view addSubview:activityIndicator];
-
-    activityIndicator = [[HZActivityIndicatorView alloc] initWithFrame:CGRectMake(50, 150, 0, 0)];
-    activityIndicator.backgroundColor = self.view.backgroundColor;
-    activityIndicator.opaque = YES;
-    activityIndicator.steps = 16;
-    activityIndicator.finSize = CGSizeMake(8, 40);
-    activityIndicator.indicatorRadius = 20;
-    activityIndicator.stepDuration = 0.100;
-    activityIndicator.color = [UIColor colorWithRed:0.0 green:34.0/255.0 blue:85.0/255.0 alpha:1.000];
-    activityIndicator.roundedCoreners = UIRectCornerTopRight;
-    activityIndicator.cornerRadii = CGSizeMake(10, 10);
-    [activityIndicator startAnimating];
-    [self.view addSubview:activityIndicator];
-    
-    [customIndicator startAnimating];
-    [nativeIndicator startAnimating];
+    [self.activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.color = [UIColor whiteColor];
+    self.activityIndicator.backgroundColor = [UIColor blackColor];
+    [self.activityIndicator setHidesWhenStopped:YES];
 }
 
 - (void)viewDidUnload
 {
-    [self setCustomIndicator:nil];
-    [self setNativeIndicator:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -109,6 +85,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.stepsField.text = [NSString stringWithFormat:@"%d", self.activityIndicator.steps];
+    self.indicatorRadiusField.text = [NSString stringWithFormat:@"%d", self.activityIndicator.indicatorRadius];
+    self.stepDurationField.text = [NSString stringWithFormat:@"%.1f", self.activityIndicator.stepDuration];
+    self.finSizeWidthField.text = [NSString stringWithFormat:@"%.1f", self.activityIndicator.finSize.width];
+    self.finSizeHeightField.text = [NSString stringWithFormat:@"%.1f", self.activityIndicator.finSize.height];
+    self.topLeftField.on = self.activityIndicator.roundedCoreners & UIRectCornerTopLeft;
+    self.topRightField.on = self.activityIndicator.roundedCoreners & UIRectCornerTopRight;
+    self.bottomLeftField.on = self.activityIndicator.roundedCoreners & UIRectCornerBottomLeft;
+    self.bottomRightField.on = self.activityIndicator.roundedCoreners & UIRectCornerBottomRight;
+    self.cornerRadiiWidthField.text = [NSString stringWithFormat:@"%.1f", self.activityIndicator.cornerRadii.width];
+    self.cornerRadiiHeightField.text = [NSString stringWithFormat:@"%.1f", self.activityIndicator.cornerRadii.height];
+    self.sizeField.text = [NSString stringWithFormat:@"%.1f", self.activityIndicator.frame.size.width];
+    
+    [self.activityIndicator startAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -126,10 +117,66 @@
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self updateActivityIndicator];
 }
 
+- (IBAction)valueChanged:(id)sender {
+    [self updateActivityIndicator];
+}
+
+- (void)updateActivityIndicator {
+    [self.activityIndicator stopAnimating];
+    
+    NSUInteger steps = [self.stepsField.text integerValue];
+    self.activityIndicator.steps = steps;
+    
+    NSUInteger indicatorRadius = [self.indicatorRadiusField.text integerValue];
+    self.activityIndicator.indicatorRadius = indicatorRadius;
+    
+    CGFloat stepDuration = [self.stepDurationField.text floatValue];
+    self.activityIndicator.stepDuration = stepDuration;
+    
+    CGFloat finSizeWidth = [self.finSizeWidthField.text floatValue];
+    CGFloat finSizeHeight = [self.finSizeHeightField.text floatValue];
+    self.activityIndicator.finSize = CGSizeMake(finSizeWidth, finSizeHeight);
+    
+    UIRectCorner roundedCorners = 0;
+    if(self.topLeftField.on) roundedCorners |= UIRectCornerTopLeft;
+    if(self.topRightField.on) roundedCorners |= UIRectCornerTopRight;
+    if(self.bottomLeftField.on) roundedCorners |= UIRectCornerBottomLeft;
+    if(self.bottomRightField.on) roundedCorners |= UIRectCornerBottomRight;
+    self.activityIndicator.roundedCoreners = roundedCorners;
+    
+    CGFloat cornerRadiiWidth = [self.cornerRadiiWidthField.text floatValue];
+    CGFloat cornerRadiiHeight = [self.cornerRadiiHeightField.text floatValue];
+    self.activityIndicator.cornerRadii = CGSizeMake(cornerRadiiWidth, cornerRadiiHeight);
+    
+    CGFloat size = [self.sizeField.text floatValue];
+    self.activityIndicator.frame = CGRectMake(self.activityIndicator.frame.origin.x, self.activityIndicator.frame.origin.y, size, size);
+    
+    [self.activityIndicator startAnimating];
+}
+- (IBAction)generateButtonTapped:(id)sender {
+    NSMutableString *code = [NSMutableString string];
+    [code appendString:@"HZActivityIndicatorView *activityIndicator = [[HZActivityIndicatorView alloc] init];\n"];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.steps = %d;\n", [self.stepsField.text integerValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.indicatorRadius = %.1f;\n", [self.indicatorRadiusField.text floatValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.stepDuration = %.1f;\n", [self.indicatorRadiusField.text floatValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.finSize = CGSizeMake(%.1f, %.1f);\n", [self.finSizeWidthField.text floatValue], [self.finSizeHeightField.text floatValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.cornerRadii = CGSizeMake(%.1f, %.1f);\n", [self.cornerRadiiWidthField.text floatValue], [self.cornerRadiiHeightField.text floatValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.frame = CGRectMake(activityIndicator.frame.origin.x, activityIndicator.frame.origin.y, %.1f, %.1f);\n", [self.sizeField.text floatValue], [self.sizeField.text floatValue]]];
+    if(self.topLeftField.on && self.topRightField.on && self.bottomLeftField.on && self.bottomRightField.on){
+        [code appendString:@"activityIndicator.roundedCoreners = UIRectCornerAllCorners;\n"];
+    } else {
+        [code appendString:@"UIRectCorner roundedCorners = 0;\n"];
+        if(self.topLeftField.on) [code appendString:@"roundedCorners |= UIRectCornerTopLeft;\n"];
+        if(self.topRightField.on) [code appendString:@"roundedCorners |= UIRectCornerTopRight;\n"];
+        if(self.bottomLeftField.on) [code appendString:@"roundedCorners |= UIRectCornerBottomLeft;\n"];
+        if(self.bottomRightField.on) [code appendString:@"roundedCorners |= UIRectCornerBottomRight;\n"];
+        [code appendString:@"activityIndicator.roundedCoreners = roundedCorners;\n"];
+    }
+    
+    NSLog(@"Code: \n%@", code);
+}
 @end
