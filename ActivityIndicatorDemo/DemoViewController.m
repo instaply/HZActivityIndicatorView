@@ -161,8 +161,8 @@
     NSMutableString *code = [NSMutableString string];
     [code appendString:@"HZActivityIndicatorView *activityIndicator = [[HZActivityIndicatorView alloc] init];\n"];
     [code appendString:[NSString stringWithFormat:@"activityIndicator.steps = %d;\n", [self.stepsField.text integerValue]]];
-    [code appendString:[NSString stringWithFormat:@"activityIndicator.indicatorRadius = %.1f;\n", [self.indicatorRadiusField.text floatValue]]];
-    [code appendString:[NSString stringWithFormat:@"activityIndicator.stepDuration = %.1f;\n", [self.indicatorRadiusField.text floatValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.indicatorRadius = %d;\n", [self.indicatorRadiusField.text integerValue]]];
+    [code appendString:[NSString stringWithFormat:@"activityIndicator.stepDuration = %.1f;\n", [self.stepDurationField.text floatValue]]];
     [code appendString:[NSString stringWithFormat:@"activityIndicator.finSize = CGSizeMake(%.1f, %.1f);\n", [self.finSizeWidthField.text floatValue], [self.finSizeHeightField.text floatValue]]];
     [code appendString:[NSString stringWithFormat:@"activityIndicator.cornerRadii = CGSizeMake(%.1f, %.1f);\n", [self.cornerRadiiWidthField.text floatValue], [self.cornerRadiiHeightField.text floatValue]]];
     [code appendString:[NSString stringWithFormat:@"activityIndicator.frame = CGRectMake(activityIndicator.frame.origin.x, activityIndicator.frame.origin.y, %.1f, %.1f);\n", [self.sizeField.text floatValue], [self.sizeField.text floatValue]]];
